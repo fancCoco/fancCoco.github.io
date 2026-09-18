@@ -65,3 +65,9 @@ admin/admin.js      本地草稿、图片、预览与 GitHub 发布
 设计参考：[Christopher Agia](https://www.chrisagia.com/)、[Rohan Sinha](https://rohansinha.nl/)、[Zac Ravichandran](https://zacravichandran.github.io/)。模板独立实现，没有复制参考网站的论文、照片或个人经历。
 
 技术依据：[GitHub Contents API](https://docs.github.com/en/rest/repos/contents#create-or-update-file-contents)、[GitHub Pages 发布来源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
+
+## 界面语言 / Interface language
+
+公开主页及示例内容使用英文。后台左上角可选择 **中文 / English**，选择会保存在当前浏览器，刷新后保留。切换语言只改变后台界面，不会翻译或覆盖个人资料、文章及草稿。预览始终显示英文主页界面。
+
+The public website and example content are in English. Select **中文 / English** at the top of the studio sidebar. Your choice is remembered in this browser. Switching the interface language does not translate or overwrite your content or drafts.
