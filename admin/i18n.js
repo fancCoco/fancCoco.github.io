@@ -59,6 +59,8 @@ const messages = {
   bioHelp: ['换行分段；支持 **加粗**。', 'Use new lines for paragraphs and **bold** for emphasis.'],
   affiliation: ['学校 / 实验室 / 团队', 'University / lab / team'],
   location: ['所在城市', 'Location'],
+  newsLimit: ['News 显示条数', 'News items shown'],
+  newsLimitHelp: ['主页显示最新的几条 News，其余内容可在列表区域内滚动查看（1–20）。', 'Show the latest News items on the homepage; scroll within the list to see the rest (1–20).'],
   avatar: ['头像网址', 'Portrait URL'],
   email: ['公开邮箱', 'Public email'],
   github: ['GitHub 网址', 'GitHub URL'],

@@ -6,6 +6,7 @@
     "role": "Researcher & Builder",
     "affiliation": "Your university / lab / team",
     "location": "Your city",
+    "newsLimit": 3,
     "bio": "Hello, and welcome to my personal website.\nThis is where I share my research, ongoing projects, and ideas worth exploring. Replace this introduction with your own story in the Content Studio.",
     "avatar": "https://avatars.githubusercontent.com/u/61082816?v=4",
     "email": "",

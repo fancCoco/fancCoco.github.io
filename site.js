@@ -17,5 +17,6 @@ fetch('content/site.json',{cache:'no-cache'})
     document.title=d.profile.name+' · Personal website';
     document.querySelector('#site').innerHTML=renderSite(d);
     updateThemeButton(document.querySelector('#theme-toggle'),currentTheme);
+    applyNewsLimit(document,d.profile);
   })
   .catch(()=>{document.querySelector('#site').innerHTML='<p class="loading">Content is temporarily unavailable. Please refresh to try again.</p>'});

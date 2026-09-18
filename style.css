@@ -9,3 +9,4 @@ html[data-theme="dark"] .research-index{background:#182536;border-left-color:#40
 .theme-toggle:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:3px}
 .theme-icon{font-size:20px;line-height:1}
 @media(max-width:700px){.header-actions{gap:18px}.theme-toggle{width:34px;height:34px}.theme-icon{font-size:18px}}
+.news-list{max-height:calc(var(--news-visible-rows,3) * 4.5rem);overflow-y:auto;padding-right:12px;scrollbar-gutter:stable;overscroll-behavior:contain}
