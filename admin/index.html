@@ -1,1 +1,71 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Content Studio · Fan Chen</title><link rel="stylesheet" href="../style.css"><link rel="stylesheet" href="admin.css"><script src="i18n.js" defer></script><script src="../shared.js" defer></script><script src="admin.js" defer></script></head><body class="studio"><aside class="sidebar"><a href="../" class="studio-brand">F<span> / </span><span data-i18n="studio">内容工作室</span></a><label class="language-label" for="language">语言 / Language</label><select id="language" aria-label="语言 / Language"><option value="zh">中文</option><option value="en">English</option></select><div class="sidebar-caption"><span data-i18n="yourSite">你的个人主页</span></div><nav aria-label="内容分类" data-i18n-label="categories" id="tabs"><button data-tab="profile" class="active">◉ <span><span data-i18n="profile">个人资料</span></span></button><button data-tab="news">◷ <span><span data-i18n="news">最新动态</span></span></button><button data-tab="research">▤ <span><span data-i18n="research">研究与项目</span></span></button><button data-tab="posts">✎ <span><span data-i18n="posts">文章与笔记</span></span></button></nav><div class="sidebar-bottom"><button id="connection"><span data-i18n="connect">连接 GitHub </span><span id="connected">○</span></button><a href="../" target="_blank" rel="noopener"><span data-i18n="viewSite">查看主页 ↗</span></a><button id="export"><span data-i18n="export">导出完整备份 ↓</span></button><label class="import-label"><span data-i18n="import">导入备份</span><input id="import" type="file" accept="application/json,.json" hidden></label><small><span data-i18n="localDrafts">草稿保存在当前浏览器。</span><br><span data-i18n="publishHint">发布后，网站才会更新。</span></small></div></aside><div class="workspace"><header class="toolbar"><span id="save-state" role="status"><span data-i18n="loading">正在加载…</span></span><div><button class="button" id="preview-toggle"><span data-i18n="mobilePreview">切换手机预览</span></button><button class="button primary" id="publish"><span data-i18n="publish">发布更新 ↗</span></button></div></header><div class="workspace-heading"><div><div class="eyebrow">YOUR SPACE, YOUR STORY</div><h1 id="section-name"><span data-i18n="profile">个人资料</span></h1><p id="section-help"><span data-i18n="profileHelp">让大家认识你。从一段简洁的自我介绍开始。</span></p></div><button class="button primary" id="add" hidden><span data-i18n="add">＋ 新建内容</span></button></div><div id="notice" class="notice" role="status" hidden></div><div class="editor-grid"><section class="editor-panel"><div id="items"></div><form id="editor"><p><span data-i18n="loadingContent">正在加载内容…</span></p></form></section><section class="preview-panel"><div class="preview-heading"><span><span data-i18n="preview">实时预览</span></span><span><span data-i18n="previewHint">含本地草稿 · 未发布</span></span></div><iframe id="preview" title="个人主页实时预览" data-i18n-title="previewTitle" sandbox="allow-same-origin"></iframe></section></div></div><dialog id="connect-dialog"><form id="connect-form"><div class="dialog-head"><h2><span data-i18n="connectTitle">连接你的 GitHub</span></h2><button type="button" class="icon-button" data-close>✕</button></div><p><span data-i18n="connectHelp">授权仅用于把内容保存到你的仓库。令牌只保留在当前页面内存中，刷新或关闭页面后清除。</span></p><label><span data-i18n="owner">GitHub 用户名</span><input name="owner" value="fancCoco" required pattern="[A-Za-z0-9-]+"></label><label><span data-i18n="repo">仓库名称</span><input name="repo" value="fancCoco.github.io" required pattern="[A-Za-z0-9._-]+"></label><label><span data-i18n="branch">发布分支</span><input name="branch" value="main" required></label><label><span data-i18n="token">访问令牌</span><input name="token" type="password" autocomplete="off" placeholder="github_pat_…" required></label><div class="setup-help"><span data-i18n="firstUse">首次使用：</span><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer"><span data-i18n="createToken">创建 Fine-grained token ↗</span></a><span data-i18n="tokenHelp">，只选择此仓库，将 Repository permissions → Contents 设为 Read and write。无需其他写入权限。不要把令牌发给任何人或写入仓库。</span></div><div class="dialog-actions"><button type="button" class="button" id="disconnect"><span data-i18n="disconnect">断开连接</span></button><button type="submit" class="button primary"><span data-i18n="verifyConnect">验证并连接</span></button></div><p id="connect-error" role="alert"></p></form></dialog><dialog id="publish-dialog"><div class="dialog-head"><h2><span data-i18n="publishTitle">发布这次更新</span></h2><button class="icon-button" data-close>✕</button></div><p id="publish-summary"></p><p><span data-i18n="publishHelp">个人资料和标记为「公开」的内容会提交到 GitHub。草稿只留在当前浏览器，不上传到公开仓库。将旧内容改为草稿会从主页撤下，但历史提交仍可查看。</span></p><label><span data-i18n="commitLabel">本次更新说明</span><input id="commit-message" value="更新个人主页内容" maxlength="120"></label><div class="dialog-actions"><button class="button" data-close><span data-i18n="keepEditing">继续编辑</span></button><button class="button primary" id="confirm-publish"><span data-i18n="confirmPublish">确认发布</span></button></div></dialog></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Content Studio · Fan Chen</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="admin.css">
+  <script src="i18n.js" defer></script>
+  <script src="../shared.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body class="studio locked">
+  <div id="auth-gate" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <div class="eyebrow">PRIVATE WORKSPACE</div>
+      <h1 id="auth-title" data-i18n="authTitle">后台登录</h1>
+      <p data-i18n="authHelp">请输入后台密码后继续。</p>
+      <form id="auth-form">
+        <label>
+          <span data-i18n="password">密码</span>
+          <input id="auth-password" type="password" autocomplete="current-password" inputmode="numeric" required>
+        </label>
+        <button class="button primary" type="submit" data-i18n="login">登录</button>
+        <p id="auth-error" role="alert" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <a href="../" class="studio-brand">F<span> / </span><span data-i18n="studio">内容工作室</span></a>
+    <label class="language-label" for="language">语言 / Language</label>
+    <select id="language" aria-label="语言 / Language"><option value="zh">中文</option><option value="en">English</option></select>
+    <div class="sidebar-caption"><span data-i18n="yourSite">你的个人主页</span></div>
+    <nav aria-label="内容分类" data-i18n-label="categories" id="tabs">
+      <button data-tab="profile" class="active">◉ <span><span data-i18n="profile">个人资料</span></span></button>
+      <button data-tab="news">◷ <span><span data-i18n="news">最新动态</span></span></button>
+      <button data-tab="research">▤ <span><span data-i18n="research">研究与项目</span></span></button>
+      <button data-tab="posts">✎ <span><span data-i18n="posts">文章与笔记</span></span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <button id="connection"><span data-i18n="connect">连接 GitHub </span><span id="connected">○</span></button>
+      <a href="../" target="_blank" rel="noopener"><span data-i18n="viewSite">查看主页 ↗</span></a>
+      <button id="export"><span data-i18n="export">导出完整备份 ↓</span></button>
+      <label class="import-label"><span data-i18n="import">导入备份</span><input id="import" type="file" accept="application/json,.json" hidden></label>
+      <small><span data-i18n="localDrafts">草稿保存在当前浏览器。</span><br><span data-i18n="publishHint">发布后，网站才会更新。</span></small>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="toolbar">
+      <span id="save-state" role="status"><span data-i18n="loading">正在加载…</span></span>
+      <div><button class="button" id="preview-toggle"><span data-i18n="mobilePreview">切换手机预览</span></button><button class="button primary" id="publish"><span data-i18n="publish">发布更新 ↗</span></button></div>
+    </header>
+    <div class="workspace-heading">
+      <div><div class="eyebrow">YOUR SPACE, YOUR STORY</div><h1 id="section-name"><span data-i18n="profile">个人资料</span></h1><p id="section-help"><span data-i18n="profileHelp">让大家认识你。从一段简洁的自我介绍开始。</span></p></div>
+      <button class="button primary" id="add" hidden><span data-i18n="add">＋ 新建内容</span></button>
+    </div>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div class="editor-grid">
+      <section class="editor-panel"><div id="items"></div><form id="editor"><p><span data-i18n="loadingContent">正在加载内容…</span></p></form></section>
+      <section class="preview-panel"><div class="preview-heading"><span><span data-i18n="preview">实时预览</span></span><span><span data-i18n="previewHint">含本地草稿 · 未发布</span></span></div><iframe id="preview" title="个人主页实时预览" data-i18n-title="previewTitle" sandbox="allow-same-origin"></iframe></section>
+    </div>
+  </div>
+
+  <dialog id="connect-dialog"><form id="connect-form"><div class="dialog-head"><h2><span data-i18n="connectTitle">连接你的 GitHub</span></h2><button type="button" class="icon-button" data-close>✕</button></div><p><span data-i18n="connectHelp">授权仅用于把内容保存到你的仓库。令牌只保留在当前页面内存中，刷新或关闭页面后清除。</span></p><label><span data-i18n="owner">GitHub 用户名</span><input name="owner" value="fancCoco" required pattern="[A-Za-z0-9-]+"></label><label><span data-i18n="repo">仓库名称</span><input name="repo" value="fancCoco.github.io" required pattern="[A-Za-z0-9._-]+"></label><label><span data-i18n="branch">发布分支</span><input name="branch" value="main" required></label><label><span data-i18n="token">访问令牌</span><input name="token" type="password" autocomplete="off" placeholder="github_pat_…" required></label><div class="setup-help"><span data-i18n="firstUse">首次使用：</span><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer"><span data-i18n="createToken">创建 Fine-grained token ↗</span></a><span data-i18n="tokenHelp">，只选择此仓库，将 Repository permissions → Contents 设为 Read and write。无需其他写入权限。不要把令牌发给任何人或写入仓库。</span></div><div class="dialog-actions"><button type="button" class="button" id="disconnect"><span data-i18n="disconnect">断开连接</span></button><button type="submit" class="button primary"><span data-i18n="verifyConnect">验证并连接</span></button></div><p id="connect-error" role="alert"></p></form></dialog>
+  <dialog id="publish-dialog"><div class="dialog-head"><h2><span data-i18n="publishTitle">发布这次更新</span></h2><button class="icon-button" data-close>✕</button></div><p id="publish-summary"></p><p><span data-i18n="publishHelp">个人资料和标记为「公开」的内容会提交到 GitHub。草稿只留在当前浏览器，不上传到公开仓库。将旧内容改为草稿会从主页撤下，但历史提交仍可查看。</span></p><label><span data-i18n="commitLabel">本次更新说明</span><input id="commit-message" value="更新个人主页内容" maxlength="120"></label><div class="dialog-actions"><button class="button" data-close><span data-i18n="keepEditing">继续编辑</span></button><button class="button primary" id="confirm-publish"><span data-i18n="confirmPublish">确认发布</span></button></div></dialog>
+</body>
+</html>
