@@ -1,7 +1,7 @@
 'use strict';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function safeURL(s,image=false){s=String(s||'').trim();if(!s)return '';if(image&&/^data:image\/(png|jpeg|webp|gif);base64,[a-z0-9+/=]+$/i.test(s))return s;if(!image&&/^data:application\/pdf;base64,[a-z0-9+/=]+$/i.test(s))return s;try{const u=new URL(s,location.href);return (['https:','http:'].includes(u.protocol)||(!image&&u.protocol==='mailto:'))?u.href:''}catch{return ''}}
-function rich(s){return esc(s).split('\n').map(l=>l.startsWith('## ')?'<h3>'+l.slice(3)+'</h3>':l.startsWith('# ')?'<h2>'+l.slice(2)+'</h2>':l?'<p>'+l.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</p>':'').join('')}
+function rich(s){return esc(s).split('\n').map(l=>{const line=l.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^)\s]+)\)/gi,(_,label,url)=>`<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`);return line.startsWith('## ')?'<h3>'+line.slice(3)+'</h3>':line.startsWith('# ')?'<h2>'+line.slice(2)+'</h2>':line?'<p>'+line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')+'</p>':''}).join('')}
 const THEME_KEY='fanccoco-theme';
 function readTheme(){try{const saved=localStorage.getItem(THEME_KEY);if(saved==='dark'||saved==='light')return saved}catch{}return window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'}
 function applyTheme(theme,root=document.documentElement){const value=theme==='dark'?'dark':'light';root.dataset.theme=value;return value}
