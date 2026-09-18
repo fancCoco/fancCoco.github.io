@@ -2,11 +2,11 @@
   "version": 1,
   "profile": {
     "name": "Fan Chen",
-    "nameZh": "你的中文名",
+    "nameZh": "",
     "role": "Researcher & Builder",
-    "affiliation": "在此填写你的学校 / 实验室 / 团队",
-    "location": "在此填写所在城市",
-    "bio": "你好，欢迎来到我的个人主页。\n这里记录我的研究、正在做的项目，以及一些值得分享的想法。你可以在管理后台把这段文字替换为自己的介绍。",
+    "affiliation": "Your university / lab / team",
+    "location": "Your city",
+    "bio": "Hello, and welcome to my personal website.\nThis is where I share my research, ongoing projects, and ideas worth exploring. Replace this introduction with your own story in the Content Studio.",
     "avatar": "https://avatars.githubusercontent.com/u/61082816?v=4",
     "email": "",
     "github": "https://github.com/fancCoco",
@@ -17,7 +17,7 @@
     {
       "id": "news-1",
       "date": "2026-09-18",
-      "title": "示例动态：我的个人主页上线了，欢迎来看看。",
+      "title": "Example update: My personal website is now live. Welcome!",
       "url": "",
       "status": "published"
     }
@@ -25,13 +25,13 @@
   "research": [
     {
       "id": "research-1",
-      "title": "示例项目 · 从一个问题开始，探索新的可能",
+      "title": "Example project · Exploring new possibilities, one question at a time",
       "year": "2026",
       "venue": "PROJECT",
       "category": "Research",
-      "authors": "你的姓名，合作者",
-      "summary": "用两三句话介绍你在解决什么问题、采用了什么方法，以及它为什么值得关注。这里是可替换的示例内容。",
-      "abstract": "## 项目简介\n你可以在后台补充更完整的研究摘要。",
+      "authors": "Your name, collaborators",
+      "summary": "Introduce the problem you are working on, the approach you are taking, and why it matters. This is placeholder text for your own project.",
+      "abstract": "## About this project\nAdd a more detailed research abstract in the Content Studio.",
       "image": "",
       "paper": "",
       "code": "",
@@ -40,12 +40,12 @@
     },
     {
       "id": "research-2",
-      "title": "示例论文 · 在这里展示你的代表性研究",
+      "title": "Example paper · A home for your research",
       "year": "2025",
       "venue": "PUBLICATION",
       "category": "Publication",
-      "authors": "你的姓名，合作者",
-      "summary": "添加论文标题、作者、会议和相关链接。你还可以上传项目图片，让研究成果更容易被理解。",
+      "authors": "Your name, collaborators",
+      "summary": "Add the paper title, authors, venue, and relevant links. Upload a project image to help visitors understand your work.",
       "abstract": "",
       "image": "",
       "paper": "",
@@ -58,9 +58,9 @@
     {
       "id": "post-1",
       "date": "2026-09-18",
-      "tag": "随笔",
-      "title": "示例文章 · 给这个小小的互联网角落写一段开场白",
-      "body": "## 你好，世界\n这是我的第一篇文章。在这里，我会分享研究笔记、项目记录，以及学习过程中留下的思考。\n**这是一篇模板示例。** 打开内容管理，即可用自己的文字替换。",
+      "tag": "Notes",
+      "title": "Example post · A first note from this corner of the internet",
+      "body": "## Hello, world\nThis is my first post. Here, I will share research notes, project updates, and reflections on what I am learning.\n**This is a template example.** Open the Content Studio to make it your own.",
       "status": "published"
     }
   ]
