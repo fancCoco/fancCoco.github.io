@@ -58,7 +58,7 @@ const messages = {
   github: ['GitHub 网址', 'GitHub URL'],
   scholar: ['Google Scholar 网址', 'Google Scholar URL'],
   cv: ['简历 PDF 网址', 'CV PDF URL'],
-  cvHelp: ['可填写 PDF 网址，或直接上传 PDF；发布后保存为仓库根目录的 CV.pdf。', 'Paste a PDF URL or upload a PDF directly. Publishing saves it as CV.pdf in the repository root.'],
+  cvHelp: ['可填写 PDF 网址，或直接上传 PDF；发布后保存为站点根目录的 /CV.pdf。', 'Paste a PDF URL or upload a PDF directly. Publishing saves it as /CV.pdf at the site root.'],
   uploadCV: ['上传 CV PDF', 'Upload CV PDF'],
   cvUploaded: ['已选择本地 PDF；点击「发布更新」后会上传并更新主页链接。', 'A local PDF is selected. Publish changes to upload it and update the website link.'],
   imageHelp: ['可粘贴完整图片网址，也可在下方上传。清空此处可移除图片。', 'Paste a full image URL or upload below. Clear this field to remove the image.'],
