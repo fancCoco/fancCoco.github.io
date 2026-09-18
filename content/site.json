@@ -12,7 +12,14 @@
     "email": "",
     "github": "https://github.com/fancCoco",
     "scholar": "",
-    "cv": "/CV.pdf"
+    "cv": "/CV.pdf",
+    "links": [
+      {
+        "id": "github",
+        "label": "GitHub",
+        "url": "https://github.com/fancCoco"
+      }
+    ]
   },
   "news": [
     {
