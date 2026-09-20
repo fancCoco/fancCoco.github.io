@@ -1,10 +1,16 @@
 ---
 import ContentLayout from '../layouts/ContentLayout.astro';
-import RecentNews from '../components/home/RecentNews.astro';
-import { publicNews } from '../lib/content';
-
-const entries = await publicNews();
 ---
-<ContentLayout title="News" description="Selected updates on publications, research, education, and projects.">
-  <RecentNews entries={entries} limit={entries.length} />
+<ContentLayout title="News" description="A space for public updates and announcements.">
+  <div class="template-placeholder">
+    <p class="eyebrow">News</p>
+    <h2>Add public updates here.</h2>
+    <p>News entries will appear here after they are prepared for publication.</p>
+  </div>
 </ContentLayout>
+
+<style>
+  .template-placeholder { max-width: 60ch; padding: 2rem; border: 1px dashed var(--color-border-strong); border-radius: 1rem; background: var(--color-surface); }
+  .template-placeholder h2 { margin: 1rem 0 0.7rem; color: var(--color-primary); font-size: 1.5rem; letter-spacing: -0.04em; line-height: 1.15; }
+  .template-placeholder p:last-child { margin-bottom: 0; color: var(--color-muted); }
+</style>

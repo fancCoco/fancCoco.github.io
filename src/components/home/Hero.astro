@@ -2,36 +2,30 @@
 import { siteConfig } from '../../config';
 import { sitePath } from '../../lib/urls';
 import Button from '../common/Button.astro';
-import IconLink from '../common/IconLink.astro';
 ---
 <section class="hero section-space">
   <div class="shell hero__grid">
     <div class="hero__copy">
-      <p class="eyebrow">{siteConfig.affiliation} / Electrical Engineering</p>
+      <p class="eyebrow">Academic profile</p>
       <h1 class="display-title">{siteConfig.name}</h1>
-      <p class="hero__role">{siteConfig.role}</p>
-      <p class="hero__statement">Researching <strong>safe autonomous systems</strong>, multi-robot planning, and foundation models for robotics.</p>
+      <p class="hero__role">Your title or position</p>
+      <p class="hero__statement">Add a concise public introduction here when you are ready.</p>
       <div class="hero__actions">
-        <Button href={sitePath('/publications/')} label="View publications" />
-        <Button href={sitePath('/research/')} label="Explore research" variant="secondary" />
+        <Button href={sitePath('/research/')} label="Add research" />
+        <Button href={sitePath('/publications/')} label="Add publications" variant="secondary" />
       </div>
       <div class="hero__links">
-        {siteConfig.email && <IconLink href={`mailto:${siteConfig.email}`} label="Email" icon="mail" external={false} />}
-        {siteConfig.links.scholar && <IconLink href={siteConfig.links.scholar} label="Google Scholar" icon="scholar" />}
-        {siteConfig.links.github && <IconLink href={siteConfig.links.github} label="GitHub" icon="github" />}
-        {siteConfig.links.linkedin && <IconLink href={siteConfig.links.linkedin} label="LinkedIn" icon="linkedin" />}
-        {siteConfig.links.orcid && <IconLink href={siteConfig.links.orcid} label="ORCID" icon="orcid" />}
-        {!siteConfig.email && !siteConfig.links.scholar && !siteConfig.links.github && !siteConfig.links.linkedin && !siteConfig.links.orcid && <span class="muted hero__links-note">External profiles will be added as they become public.</span>}
+        <span class="muted hero__links-note">Add public profile links here when ready.</span>
       </div>
     </div>
-    <div class="hero__visual" role="img" aria-label="Abstract FC monogram representing Fan Chen">
+    <div class="hero__visual" role="img" aria-label="Abstract FC monogram">
       <div class="hero__orbit hero__orbit--one"></div>
       <div class="hero__orbit hero__orbit--two"></div>
       <div class="hero__node hero__node--one"></div>
       <div class="hero__node hero__node--two"></div>
       <div class="hero__node hero__node--three"></div>
       <div class="hero__monogram">FC</div>
-      <p class="hero__caption">safe autonomy<br />through reliable reasoning</p>
+      <p class="hero__caption">Academic website<br />template</p>
     </div>
   </div>
 </section>

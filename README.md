@@ -1,10 +1,10 @@
 # Fan Chen Academic Website
 
-An English, static academic portfolio built with Astro, TypeScript, Tailwind CSS, and a small React island for publication filtering.
+An English, static academic website template built with Astro and TypeScript. The public site intentionally contains only the name Fan Chen and generic placeholders until approved public content is added.
 
 ## Development
 
-This project uses Node.js 24 and npm. After installing dependencies:
+This project uses Node.js and npm. After installing dependencies:
 
 ```bash
 npm run dev
@@ -12,30 +12,18 @@ npm run check
 npm run build
 ```
 
-The production site is configured for the user-page repository `fancCoco.github.io` and deploys to `https://fanccoco.github.io` through GitHub Pages Actions.
+The production site deploys to GitHub Pages through the workflow in `.github/workflows/deploy.yml`.
 
-## Content updates
+## Adding public content
 
-- Site identity and external links: `src/config.ts`
-- Publications: `src/content/publications/`
-- Projects: `src/content/projects/`
-- Research areas: `src/content/research/`
-- News: `src/content/news/`
+- Site identity: `src/config.ts`
+- Homepage template: `src/pages/index.astro`
+- Research cards: `src/components/home/ResearchCards.astro`
+- Content templates: `src/content/`
 - Public assets: `public/`
 
-Content defaults to `draft: true`; public entries must explicitly set `draft: false`. Optional paper, code, Scholar, email, CV, and profile links are omitted until verified and public.
+The example content files are marked `draft: true` and are not rendered. Replace them only with information that is ready to be public. Keep private, unpublished, or unverified details out of the repository.
 
 ## Design direction
 
-The light theme uses a restrained Notre Dame-inspired navy and gold palette. The dark theme uses an ink background, cool cyan/teal accents, and a quiet technical grid influenced by the supplied Karthika Mohan reference. Both themes prioritize readable content, strong focus states, reduced motion, and low JavaScript overhead.
-
-## Materials still to add
-
-- Public headshot or approved profile image
-- Public email address
-- Google Scholar, GitHub, LinkedIn, and ORCID URLs
-- Public CV PDF
-- Verified paper, code, video, and slides URLs
-- Approved project teasers or diagrams
-
-No placeholder portrait, unverified academic link, or empty CV file is published by default.
+The light theme uses a restrained navy-and-gold palette. The dark theme uses an ink background with cool cyan and teal accents. Both themes prioritize readable content, strong focus states, reduced motion, and low JavaScript overhead.

@@ -1,18 +1,14 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
-import ProjectCard from '../../components/projects/ProjectCard.astro';
-import { publicProjects } from '../../lib/content';
-
-const projects = await publicProjects();
 ---
-<ContentLayout title="Projects" description="Research projects translating safety, planning, and semantic reasoning into robotic systems.">
-  <div class="project-intro"><p>These projects are organized around a simple question: what needs to be true for a robot to act usefully when its environment is only partially understood?</p><p>Project status is explicit. Ongoing and planned work is presented as a direction of research, not as a claim of completed results.</p></div>
-  <div class="project-list">{projects.map((project) => <ProjectCard project={project} />)}</div>
+<ContentLayout title="Projects" description="A space for public projects and project descriptions.">
+  <div class="project-intro"><p>Add a short public overview of your projects here.</p><p>Project cards and detail pages will appear after public entries are added.</p></div>
+  <div class="template-placeholder">No public projects have been added yet.</div>
 </ContentLayout>
 
 <style>
   .project-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; color: var(--color-muted); }
   .project-intro p { margin: 0; }
-  .project-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  @media (max-width: 700px) { .project-intro, .project-list { grid-template-columns: 1fr; } }
+  .template-placeholder { min-height: 12rem; display: grid; place-items: center; padding: 1.5rem; border: 1px dashed var(--color-border-strong); border-radius: 1rem; color: var(--color-muted); text-align: center; }
+  @media (max-width: 700px) { .project-intro { grid-template-columns: 1fr; } }
 </style>
