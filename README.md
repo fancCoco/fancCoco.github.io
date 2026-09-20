@@ -26,4 +26,6 @@ The example content files are marked `draft: true` and are not rendered. The cur
 
 ## Design direction
 
+The single Home page is organized as Bio, News, Research, Publications, Projects, Theses & Dissertations, Patents, and Contact. The section rhythm is inspired by the referenced academic homepage while the content remains generic and private by default.
+
 The light theme uses a restrained navy-and-gold palette. The dark theme uses an ink background with cool cyan and teal accents. Both themes prioritize readable content, strong focus states, reduced motion, and low JavaScript overhead.

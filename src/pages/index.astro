@@ -6,7 +6,6 @@ import Hero from '../components/home/Hero.astro';
 import ResearchCards from '../components/home/ResearchCards.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
 import { siteConfig } from '../config';
-import { sitePath } from '../lib/urls';
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -20,29 +19,74 @@ const structuredData = {
   <Header />
   <main id="main-content">
     <Hero />
-    <section id="about" class="section-space section-muted">
-      <div class="shell narrow-grid">
-        <div><p class="eyebrow">About</p><h2 class="section-title">Add a short public introduction.</h2></div>
-        <div class="about-copy">
-          <p>Use this area for a concise biography or professional overview.</p>
-          <p>Only publish information that is ready to be public.</p>
+
+    <section id="bio" class="section-space section-muted">
+      <div class="shell content-grid">
+        <SectionHeading eyebrow="01 / Bio" title="Add a short public biography." description="Use this opening section for a concise overview, following the reference site's direct academic introduction." />
+        <div class="content-copy">
+          <p>Use this area for a public biography or professional overview.</p>
+          <p>Keep unpublished, private, or unverified details out of the public template.</p>
         </div>
       </div>
     </section>
-    <section id="research" class="section-space">
-      <div class="shell"><SectionHeading eyebrow="Research interests" title="Add your research themes." description="Use these cards for public research areas, methods, or topics." /><ResearchCards /></div>
+
+    <section id="news" class="section-space">
+      <div class="shell narrow-section">
+        <SectionHeading eyebrow="02 / News" title="Keep public updates easy to scan." description="A compact chronological section for announcements, milestones, talks, or other public notes." />
+        <div class="template-list">
+          <div class="template-row"><span>YYYY.MM</span><p>Add a public update title here.</p><span aria-hidden="true">↗</span></div>
+          <div class="template-row"><span>YYYY.MM</span><p>Add a public update title here.</p><span aria-hidden="true">↗</span></div>
+          <div class="template-row"><span>YYYY.MM</span><p>Add a public update title here.</p><span aria-hidden="true">↗</span></div>
+        </div>
+      </div>
     </section>
-    <section id="publications" class="section-space section-muted">
-      <div class="shell"><div class="split-heading"><SectionHeading eyebrow="Selected work" title="Add public publications here." /><a class="text-link" href={sitePath('/#publications')}>View publications ↗</a></div><div class="template-empty">Publication cards will appear here after public entries are added.</div></div>
+
+    <section id="research" class="section-space section-muted">
+      <div class="shell">
+        <SectionHeading eyebrow="03 / Research" title="Organize research by public themes." description="Use a small set of representative areas, with short descriptions and optional topic tags." />
+        <ResearchCards />
+      </div>
     </section>
-    <section id="projects" class="section-space">
-      <div class="shell"><div class="split-heading"><SectionHeading eyebrow="Projects" title="Add public projects here." /><a class="text-link" href={sitePath('/#projects')}>Explore projects ↗</a></div><div class="template-empty">Project cards will appear here after public entries are added.</div></div>
+
+    <section id="publications" class="section-space">
+      <div class="shell narrow-section">
+        <SectionHeading eyebrow="04 / Publications" title="List selected public work." description="A focused publication list can live directly on the Home page while the site remains single-page." />
+        <div class="template-list">
+          <div class="template-row"><span>YEAR</span><p>Add a public publication title here.</p><span aria-hidden="true">↗</span></div>
+          <div class="template-row"><span>YEAR</span><p>Add a public publication title here.</p><span aria-hidden="true">↗</span></div>
+        </div>
+      </div>
     </section>
-    <section id="news" class="section-space section-muted">
-      <div class="shell narrow-section"><div class="split-heading"><SectionHeading eyebrow="Recent news" title="Add public updates here." /><a class="text-link" href={sitePath('/#news')}>See all news ↗</a></div><div class="template-empty">News items will appear here after public entries are added.</div></div>
+
+    <section id="projects" class="section-space section-muted">
+      <div class="shell narrow-section">
+        <SectionHeading eyebrow="05 / Projects" title="Show selected projects without a separate page." description="Use short project entries or links for work that is ready to be public." />
+        <div class="template-list">
+          <div class="template-row"><span>PROJECT</span><p>Add a public project title here.</p><span aria-hidden="true">↗</span></div>
+          <div class="template-row"><span>PROJECT</span><p>Add a public project title here.</p><span aria-hidden="true">↗</span></div>
+        </div>
+      </div>
     </section>
+
+    <section id="theses" class="section-space">
+      <div class="shell narrow-section">
+        <SectionHeading eyebrow="06 / Theses &amp; Dissertations" title="Reserve space for longer academic work." description="This follows the reference site's dedicated thesis and dissertation section." />
+        <div class="template-empty">Add public thesis or dissertation entries here.</div>
+      </div>
+    </section>
+
+    <section id="patents" class="section-space section-muted">
+      <div class="shell narrow-section">
+        <SectionHeading eyebrow="07 / Patents" title="Reserve space for intellectual property." description="Keep this section empty until approved patent information is ready to publish." />
+        <div class="template-empty">Add public patent entries here.</div>
+      </div>
+    </section>
+
     <section id="contact" class="contact-band">
-      <div class="shell contact-band__inner"><div><p class="eyebrow">Contact</p><h2>Add a public contact note.</h2></div><p class="muted">Public contact details can be added here when ready.</p></div>
+      <div class="shell contact-band__inner">
+        <div><p class="eyebrow">08 / Contact</p><h2>Add a public contact note.</h2></div>
+        <p class="muted">Public contact details and profile links can be added here when ready.</p>
+      </div>
     </section>
   </main>
   <Footer />
@@ -50,18 +94,20 @@ const structuredData = {
 
 <style>
   .section-muted { background: color-mix(in srgb, var(--color-surface) 44%, transparent); border-block: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent); }
-  .narrow-grid { display: grid; grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 9vw, 8rem); align-items: start; }
-  .about-copy { max-width: 62ch; color: var(--color-muted); }
-  .about-copy p { margin: 0 0 1.1rem; }
-  .split-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
-  .split-heading .section-heading { margin-bottom: 0; }
-  .text-link { flex: none; color: var(--color-primary); font-size: 0.87rem; font-weight: 700; text-decoration: none; }
-  .template-empty { min-height: 8rem; display: grid; place-items: center; padding: 1.5rem; border: 1px dashed var(--color-border-strong); border-radius: 1rem; color: var(--color-muted); text-align: center; }
+  .content-grid { display: grid; grid-template-columns: minmax(220px, 0.82fr) minmax(0, 1.18fr); gap: clamp(2rem, 9vw, 8rem); align-items: start; }
+  .content-copy { max-width: 62ch; color: var(--color-muted); }
+  .content-copy p { margin: 0 0 1.1rem; }
   .narrow-section { max-width: 900px; }
+  .template-list { border-top: 1px solid var(--color-border); }
+  .template-row { display: grid; grid-template-columns: 7rem 1fr auto; gap: 1.25rem; align-items: center; min-height: 4.2rem; border-bottom: 1px solid var(--color-border); }
+  .template-row > span:first-child { color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.08em; }
+  .template-row p { margin: 0; color: var(--color-primary); font-weight: 650; }
+  .template-row > span:last-child { color: var(--color-accent); }
+  .template-empty { min-height: 8rem; display: grid; place-items: center; padding: 1.5rem; border: 1px dashed var(--color-border-strong); border-radius: 1rem; color: var(--color-muted); text-align: center; }
   .contact-band { border-top: 1px solid var(--color-border); background: var(--color-primary); color: var(--color-primary-contrast); }
   .contact-band__inner { display: flex; justify-content: space-between; gap: 2rem; align-items: center; padding-block: 3.8rem; }
   .contact-band .eyebrow { color: var(--color-accent); }
   .contact-band h2 { max-width: 13ch; margin: 0.6rem 0 0; font-size: clamp(1.9rem, 4vw, 3.4rem); letter-spacing: -0.06em; line-height: 1; }
   .contact-band .muted { max-width: 32ch; color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent); }
-  @media (max-width: 700px) { .narrow-grid, .contact-band__inner { grid-template-columns: 1fr; display: grid; gap: 1.5rem; } .split-heading { align-items: start; display: grid; gap: 1rem; } }
+  @media (max-width: 700px) { .content-grid, .contact-band__inner { grid-template-columns: 1fr; display: grid; gap: 1.5rem; } .template-row { grid-template-columns: 5.5rem 1fr auto; gap: 0.75rem; } }
 </style>

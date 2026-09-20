@@ -11,9 +11,18 @@ import Button from '../common/Button.astro';
       <p class="hero__role">Your title or position</p>
       <p class="hero__statement">Add a concise public introduction here when you are ready.</p>
       <div class="hero__actions">
-        <Button href={sitePath('/#research')} label="Add research" />
-        <Button href={sitePath('/#publications')} label="Add publications" variant="secondary" />
+        <Button href={sitePath('/#bio')} label="Read bio" />
+        <Button href={sitePath('/#research')} label="View research" variant="secondary" />
       </div>
+      <nav class="hero__section-index" aria-label="Home sections">
+        <a href={sitePath('/#bio')}>Bio</a>
+        <a href={sitePath('/#news')}>News</a>
+        <a href={sitePath('/#research')}>Research</a>
+        <a href={sitePath('/#publications')}>Publications</a>
+        <a href={sitePath('/#projects')}>Projects</a>
+        <a href={sitePath('/#theses')}>Theses</a>
+        <a href={sitePath('/#patents')}>Patents</a>
+      </nav>
       <div class="hero__links">
         <span class="muted hero__links-note">Add public profile links here when ready.</span>
       </div>
@@ -38,6 +47,9 @@ import Button from '../common/Button.astro';
   .hero__statement { max-width: 55ch; margin: 1.1rem 0 0; color: var(--color-muted); font-size: clamp(1.05rem, 1.7vw, 1.26rem); }
   .hero__statement strong { color: var(--color-text); font-weight: 700; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+  .hero__section-index { display: flex; flex-wrap: wrap; gap: 0.75rem 1.15rem; margin-top: 2.1rem; }
+  .hero__section-index a { color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase; }
+  .hero__section-index a:hover { color: var(--color-primary); }
   .hero__links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin-top: 2.2rem; }
   .hero__links-note { font-size: 0.8rem; }
   .hero__visual { position: relative; display: grid; place-items: center; min-height: 390px; overflow: hidden; border: 1px solid var(--color-border); border-radius: 1.5rem; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 44%), var(--color-surface); }
