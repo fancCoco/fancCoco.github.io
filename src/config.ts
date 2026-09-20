@@ -7,9 +7,4 @@ export const siteConfig = {
 
 export const navigation = [
   { label: 'Home', href: '/' },
-  { label: 'Research', href: '/research/' },
-  { label: 'Publications', href: '/publications/' },
-  { label: 'Projects', href: '/projects/' },
-  { label: 'News', href: '/news/' },
-  { label: 'CV', href: '/cv/' },
 ];
