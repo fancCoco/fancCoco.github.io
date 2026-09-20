@@ -1,0 +1,30 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import ResearchCards from '../components/home/ResearchCards.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import { publicResearch } from '../lib/content';
+
+const research = await publicResearch();
+---
+<ContentLayout title="Research" description="Research themes at the intersection of reliable autonomy, multi-robot systems, and foundation models for robotics.">
+  <div class="research-intro"><p>Autonomous systems are increasingly asked to operate in places where their training data, models, and communication assumptions are incomplete. My research asks how we can make these systems more aware of risk and more capable of reasoning under uncertainty.</p><p>The three themes below are distinct but deliberately connected: a safety monitor should influence planning, planning should account for team behavior, and foundation models should be grounded in measurable system constraints.</p></div>
+  <ResearchCards />
+  <div class="research-detail-grid">
+    {research.map((area) => <article class="research-detail"><p class="eyebrow">{String(area.data.order).padStart(2, '0')}</p><h2>{area.data.title}</h2><p>{area.data.summary}</p><a href="#research-notes">Read the research notes ↓</a></article>)}
+  </div>
+  <div id="research-notes" class="research-notes"><SectionHeading eyebrow="Working principles" title="Reliable autonomy is a systems problem." /><ul><li><strong>Make risk legible.</strong> Safety signals should be meaningful to both a planner and a person supervising the system.</li><li><strong>Design for uncertainty.</strong> A robust system should account for model mismatch, delayed information, and missing communication.</li><li><strong>Keep the loop grounded.</strong> Foundation models are most useful when their outputs are connected to constraints, feedback, and verifiable actions.</li></ul></div>
+</ContentLayout>
+
+<style>
+  .research-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; color: var(--color-muted); }
+  .research-intro p { margin: 0; }
+  .research-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 4.5rem; }
+  .research-detail { padding-top: 1rem; border-top: 2px solid var(--color-accent); }
+  .research-detail h2 { margin: 1.4rem 0 0.6rem; color: var(--color-primary); font-size: 1.25rem; letter-spacing: -0.035em; line-height: 1.1; }
+  .research-detail p { color: var(--color-muted); font-size: 0.9rem; }
+  .research-detail a { color: var(--color-primary); font-size: 0.82rem; font-weight: 700; text-decoration: none; }
+  .research-notes { margin-top: 5.5rem; padding-top: 3rem; border-top: 1px solid var(--color-border); }
+  .research-notes ul { display: grid; gap: 1.1rem; margin: 0; padding-left: 1.2rem; color: var(--color-muted); }
+  .research-notes strong { color: var(--color-text); }
+  @media (max-width: 700px) { .research-intro, .research-detail-grid { grid-template-columns: 1fr; } }
+</style>

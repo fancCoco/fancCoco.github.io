@@ -1,0 +1,45 @@
+---
+import Tag from '../common/Tag.astro';
+
+const areas = [
+  {
+    number: '01',
+    title: 'Safe Autonomous Systems',
+    summary: 'Making autonomous behavior measurable, interpretable, and robust when the world is uncertain.',
+    methods: ['Semantic safety monitoring', 'Uncertainty modeling', 'Risk-aware planning'],
+  },
+  {
+    number: '02',
+    title: 'Multi-Robot Planning & Coordination',
+    summary: 'Coordinating teams of robots under communication constraints, partial observability, and safety requirements.',
+    methods: ['Distributed perception', 'Task execution', 'Collaborative decision-making'],
+  },
+  {
+    number: '03',
+    title: 'Foundation Models for Robotics',
+    summary: 'Connecting task-conditioned semantic reasoning with reliable, latency-aware robotic systems.',
+    methods: ['Vision-language models', 'Online adaptation', 'Reasoning latency'],
+  },
+];
+---
+<div class="research-grid">
+  {areas.map((area) => (
+    <article class="research-card surface-card">
+      <div class="research-card__top"><span class="eyebrow">{area.number}</span><span class="research-card__arrow" aria-hidden="true">↗</span></div>
+      <h3>{area.title}</h3>
+      <p>{area.summary}</p>
+      <div class="research-card__tags">{area.methods.map((method) => <Tag label={method} />)}</div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .research-card { min-height: 290px; padding: 1.4rem; transition: transform 180ms ease, border-color 180ms ease; }
+  .research-card__top { display: flex; justify-content: space-between; }
+  .research-card__arrow { color: var(--color-accent); font-size: 1.2rem; }
+  .research-card h3 { max-width: 15ch; margin: 2.2rem 0 0.8rem; color: var(--color-primary); font-size: 1.35rem; letter-spacing: -0.04em; line-height: 1.1; }
+  .research-card p { margin: 0; color: var(--color-muted); font-size: 0.9rem; }
+  .research-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
+  @media (max-width: 800px) { .research-grid { grid-template-columns: 1fr; } .research-card { min-height: auto; } }
+</style>

@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Tag from '../common/Tag.astro';
+import { sitePath } from '../../lib/urls';
+
+interface Props { project: CollectionEntry<'projects'>; }
+const { project } = Astro.props;
+const { data } = project;
+const statusLabel = data.status[0].toUpperCase() + data.status.slice(1);
+---
+<a class="project-card surface-card" href={sitePath(`/projects/${project.id}/`)}>
+  <div class="project-card__signal" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="project-card__body">
+    <div class="project-card__meta"><span>{data.period}</span><span class={data.status === 'ongoing' ? 'status-dot' : data.status === 'planned' ? 'status-dot status-dot--muted' : 'status-dot status-dot--gold'}></span></div>
+    <h3>{data.title}</h3>
+    <p>{data.summary}</p>
+    <div class="project-card__bottom"><div>{data.topics.slice(0, 2).map((topic) => <Tag label={topic} />)}</div><span class="project-card__status">{statusLabel} ↗</span></div>
+  </div>
+</a>
+
+<style>
+  .project-card { display: flex; flex-direction: column; min-height: 330px; overflow: hidden; text-decoration: none; transition: transform 180ms ease, border-color 180ms ease; }
+  .project-card__signal { position: relative; height: 100px; overflow: hidden; border-bottom: 1px solid var(--color-border); background: radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--color-teal) 16%, transparent), transparent 34%), color-mix(in srgb, var(--color-surface-raised) 92%, transparent); }
+  .project-card__signal::before, .project-card__signal::after { content: ''; position: absolute; left: 12%; right: 12%; top: 50%; height: 1px; background: var(--color-border-strong); transform: rotate(-13deg); }
+  .project-card__signal::after { transform: rotate(21deg); background: color-mix(in srgb, var(--color-accent) 70%, transparent); }
+  .project-card__signal span { position: absolute; z-index: 1; width: 0.48rem; height: 0.48rem; border-radius: 50%; background: var(--color-accent); }
+  .project-card__signal span:nth-child(1) { top: 22%; left: 16%; } .project-card__signal span:nth-child(2) { top: 62%; left: 42%; background: var(--color-teal); } .project-card__signal span:nth-child(3) { top: 30%; right: 21%; } .project-card__signal span:nth-child(4) { bottom: 16%; right: 34%; background: var(--color-primary); }
+  .project-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.25rem; }
+  .project-card__meta { display: flex; justify-content: space-between; color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.07em; text-transform: uppercase; }
+  .project-card h3 { margin: 1.2rem 0 0.55rem; color: var(--color-primary); font-size: 1.3rem; letter-spacing: -0.04em; line-height: 1.1; }
+  .project-card p { margin: 0; color: var(--color-muted); font-size: 0.89rem; }
+  .project-card__bottom { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.25rem; }
+  .project-card__bottom > div { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .project-card__status { color: var(--color-primary); font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+</style>

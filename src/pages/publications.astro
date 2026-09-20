@@ -1,0 +1,33 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import PublicationExplorer from '../components/publications/PublicationExplorer';
+import { publicProjects, publicPublications } from '../lib/content';
+import { sitePath } from '../lib/urls';
+
+const entries = await publicPublications();
+const projects = await publicProjects();
+const projectIds = new Set(projects.map((project) => project.id));
+const publications = entries.map(({ data }) => ({
+  title: data.title,
+  authors: data.authors,
+  venue: data.venue,
+  year: data.year,
+  type: data.type,
+  topics: data.topics,
+  status: data.status,
+  paperUrl: data.paperUrl,
+  projectUrl: data.projectId && projectIds.has(data.projectId) ? sitePath(`/projects/${data.projectId}/`) : data.projectUrl,
+  codeUrl: data.codeUrl,
+  videoUrl: data.videoUrl,
+  slidesUrl: data.slidesUrl,
+  bibtex: data.bibtex,
+}));
+---
+<ContentLayout title="Publications" description="A searchable record of research in safe autonomy, multi-robot planning, and robotics foundation models.">
+  <p class="publication-note">Publications are listed by year. Use the filters to narrow the list by topic, type, or author. Missing resources are intentionally omitted until they are verified and public.</p>
+  <PublicationExplorer publications={publications} client:load />
+</ContentLayout>
+
+<style>
+  .publication-note { max-width: 65ch; margin: 0 0 2.5rem; color: var(--color-muted); }
+</style>

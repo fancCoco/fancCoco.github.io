@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/home/Hero.astro';
+import ResearchCards from '../components/home/ResearchCards.astro';
+import RecentNews from '../components/home/RecentNews.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import PublicationCard from '../components/publications/PublicationCard.astro';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+import { siteConfig } from '../config';
+import { sitePath } from '../lib/urls';
+import { publicNews, publicProjects, publicPublications } from '../lib/content';
+
+const publications = await publicPublications();
+const selectedPublications = publications
+  .filter((entry) => entry.data.selected)
+  .sort((a, b) => (a.data.featuredOrder ?? 99) - (b.data.featuredOrder ?? 99))
+  .slice(0, 3);
+const projects = (await publicProjects()).filter((entry) => entry.data.featured).slice(0, 3);
+const news = await publicNews();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: siteConfig.name,
+  url: 'https://fanccoco.github.io',
+  image: 'https://fanccoco.github.io/og-default.svg',
+  jobTitle: siteConfig.role,
+  affiliation: { '@type': 'Organization', name: siteConfig.affiliation },
+  knowsAbout: ['Safe autonomous systems', 'Multi-robot planning', 'Foundation models for robotics'],
+};
+---
+<BaseLayout structuredData={structuredData}>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <section class="section-space section-muted">
+      <div class="shell narrow-grid">
+        <div><p class="eyebrow">About</p><h2 class="section-title">Building autonomy that can explain its decisions.</h2></div>
+        <div class="about-copy">
+          <p>My work explores how autonomous robots can perceive risk, reason about task-specific safety, and coordinate effectively in uncertain environments. I am interested in systems that remain useful beyond carefully controlled demonstrations: systems that know when their assumptions may fail, communicate limitations, and adapt their plans accordingly.</p>
+          <p>My current research connects semantic safety monitoring, uncertainty-aware planning, and multi-robot coordination with emerging foundation models for robotics. The goal is a practical synthesis of reliable reasoning and real-world autonomy, from unmanned aerial vehicles to teams of robots operating together.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section-space">
+      <div class="shell"><SectionHeading eyebrow="Research interests" title="Three connected research threads." description="The common thread is reliability: giving autonomous systems the structure and feedback they need to act safely in open-ended settings." /><ResearchCards /></div>
+    </section>
+    <section class="section-space section-muted">
+      <div class="shell"><div class="split-heading"><SectionHeading eyebrow="Selected work" title="Research in progress and in print." /><a class="text-link" href={sitePath('/publications/')}>View all publications ↗</a></div><div class="publication-grid">{selectedPublications.map((publication) => <PublicationCard publication={publication} projectHref={publication.data.projectId ? sitePath(`/projects/${publication.data.projectId}/`) : undefined} />)}</div></div>
+    </section>
+    <section class="section-space">
+      <div class="shell"><div class="split-heading"><SectionHeading eyebrow="Projects" title="From safety concepts to robotic systems." /><a class="text-link" href={sitePath('/projects/')}>Explore projects ↗</a></div><div class="project-grid">{projects.map((project) => <ProjectCard project={project} />)}</div></div>
+    </section>
+    <section class="section-space section-muted">
+      <div class="shell narrow-section"><div class="split-heading"><SectionHeading eyebrow="Recent news" title="A short record of what is moving." /><a class="text-link" href={sitePath('/news/')}>See all news ↗</a></div><RecentNews entries={news} /></div>
+    </section>
+    <section class="contact-band">
+      <div class="shell contact-band__inner"><div><p class="eyebrow">Open to thoughtful collaboration</p><h2>Interested in safe, capable robots?</h2></div><p class="muted">Public contact details and external profiles will be linked here when available.</p></div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .section-muted { background: color-mix(in srgb, var(--color-surface) 44%, transparent); border-block: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent); }
+  .narrow-grid { display: grid; grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 9vw, 8rem); align-items: start; }
+  .about-copy { max-width: 62ch; color: var(--color-muted); }
+  .about-copy p { margin: 0 0 1.1rem; }
+  .split-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 2.5rem; }
+  .split-heading .section-heading { margin-bottom: 0; }
+  .text-link { flex: none; color: var(--color-primary); font-size: 0.87rem; font-weight: 700; text-decoration: none; }
+  .publication-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .narrow-section { max-width: 900px; }
+  .contact-band { border-top: 1px solid var(--color-border); background: var(--color-primary); color: var(--color-primary-contrast); }
+  .contact-band__inner { display: flex; justify-content: space-between; gap: 2rem; align-items: center; padding-block: 3.8rem; }
+  .contact-band .eyebrow { color: var(--color-accent); }
+  .contact-band h2 { max-width: 13ch; margin: 0.6rem 0 0; font-size: clamp(1.9rem, 4vw, 3.4rem); letter-spacing: -0.06em; line-height: 1; }
+  .contact-band .muted { max-width: 32ch; color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent); }
+  @media (max-width: 900px) { .publication-grid, .project-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .narrow-grid, .contact-band__inner { grid-template-columns: 1fr; display: grid; gap: 1.5rem; } .split-heading { align-items: start; display: grid; gap: 1rem; } }
+  @media (max-width: 560px) { .publication-grid, .project-grid { grid-template-columns: 1fr; } }
+</style>

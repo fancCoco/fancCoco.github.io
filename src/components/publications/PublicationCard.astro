@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Tag from '../common/Tag.astro';
+
+interface Props { publication: CollectionEntry<'publications'>; projectHref?: string; }
+const { publication, projectHref } = Astro.props;
+const { data } = publication;
+const titleHref = data.paperUrl || projectHref;
+const statusLabel = data.status === 'under-review' ? 'Under review' : data.status[0].toUpperCase() + data.status.slice(1);
+---
+<article class="publication-card surface-card">
+  <div class="publication-card__meta">
+    <span>{data.year}</span>
+    <span class="publication-card__status"><span class={`status-dot ${data.status === 'accepted' ? 'status-dot--gold' : ''}`}></span>{statusLabel}</span>
+  </div>
+  <h3>{titleHref ? <a href={titleHref} target={data.paperUrl ? '_blank' : undefined} rel={data.paperUrl ? 'noreferrer' : undefined}>{data.title}</a> : data.title}</h3>
+  <p class="publication-card__authors">{data.authors.map((author, index) => <span class={author.toLowerCase() === 'fan chen' ? 'author-self' : undefined}>{author}{index < data.authors.length - 1 ? ', ' : ''}</span>)}</p>
+  <p class="publication-card__venue">{data.venue}</p>
+  <div class="publication-card__tags">{data.topics.map((topic) => <Tag label={topic} />)}</div>
+</article>
+
+<style>
+  .publication-card { padding: 1.35rem; transition: transform 180ms ease, border-color 180ms ease; }
+  .publication-card__meta { display: flex; justify-content: space-between; gap: 1rem; color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .publication-card__status { white-space: nowrap; }
+  .publication-card h3 { margin: 1.35rem 0 0.7rem; color: var(--color-primary); font-size: 1.12rem; letter-spacing: -0.025em; line-height: 1.25; }
+  .publication-card h3 a { text-decoration: none; }
+  .publication-card__authors, .publication-card__venue { margin: 0; color: var(--color-muted); font-size: 0.87rem; }
+  .publication-card__venue { margin-top: 0.25rem; font-style: italic; }
+  .publication-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .author-self { color: var(--color-text); font-weight: 650; }
+</style>

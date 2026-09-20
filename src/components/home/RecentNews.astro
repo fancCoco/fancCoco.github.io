@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props { entries: CollectionEntry<'news'>[]; limit?: number; }
+const { entries, limit = 4 } = Astro.props;
+const visible = entries.slice(0, limit);
+---
+<div class="news-list">
+  {visible.map((entry) => (
+    <article class="news-row">
+      <time datetime={entry.data.date.toISOString()}>{entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</time>
+      <div>
+        <p class="news-row__category">{entry.data.category}</p>
+        {entry.data.link ? <a href={entry.data.link} target="_blank" rel="noreferrer">{entry.data.title} ↗</a> : <p class="news-row__title">{entry.data.title}</p>}
+      </div>
+    </article>
+  ))}
+  {!visible.length && <p class="muted">Updates will appear here as they become public.</p>}
+</div>
+
+<style>
+  .news-list { border-top: 1px solid var(--color-border); }
+  .news-row { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding: 1.15rem 0; border-bottom: 1px solid var(--color-border); }
+  .news-row time { color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.73rem; padding-top: 0.15rem; }
+  .news-row__category { margin: 0 0 0.2rem; color: var(--color-teal); font-family: "JetBrains Mono", monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .news-row__title, .news-row a { margin: 0; color: var(--color-primary); font-size: 1rem; font-weight: 650; text-decoration: none; }
+  @media (max-width: 640px) { .news-row { grid-template-columns: 1fr; gap: 0.25rem; } }
+</style>

@@ -1,0 +1,51 @@
+---
+import { render } from 'astro:content';
+import { publicProjects } from '../../lib/content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Tag from '../../components/common/Tag.astro';
+import { sitePath } from '../../lib/urls';
+
+export async function getStaticPaths() {
+  const entries = await publicProjects();
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const statusLabel = entry.data.status[0].toUpperCase() + entry.data.status.slice(1);
+---
+<BaseLayout title={`${entry.data.title} · Fan Chen`} description={entry.data.summary}>
+  <Header />
+  <main id="main-content">
+    <section class="section-space project-detail">
+      <div class="shell">
+        <a class="back-link" href={sitePath('/projects/')}>← All projects</a>
+        <div class="project-detail__header">
+          <div><p class="eyebrow">Project / {entry.data.period}</p><h1 class="page-title">{entry.data.title}</h1><p class="project-detail__summary">{entry.data.summary}</p></div>
+          <div class="project-detail__status"><span class={`status-dot ${entry.data.status === 'planned' ? 'status-dot--muted' : entry.data.status === 'completed' ? 'status-dot--gold' : ''}`}></span>{statusLabel}</div>
+        </div>
+        <div class="project-detail__topics">{entry.data.topics.map((topic) => <Tag label={topic} />)}</div>
+        <div class="project-detail__body prose"><Content /></div>
+        {Object.values(entry.data.links).some(Boolean) && <div class="project-links"><p class="eyebrow">Resources</p>{entry.data.links.paper && <a href={entry.data.links.paper} target="_blank" rel="noreferrer">Paper ↗</a>}{entry.data.links.code && <a href={entry.data.links.code} target="_blank" rel="noreferrer">Code ↗</a>}{entry.data.links.demo && <a href={entry.data.links.demo} target="_blank" rel="noreferrer">Demo ↗</a>}{entry.data.links.video && <a href={entry.data.links.video} target="_blank" rel="noreferrer">Video ↗</a>}</div>}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .project-detail { padding-top: 4.5rem; }
+  .back-link { color: var(--color-muted); font-size: 0.84rem; text-decoration: none; }
+  .back-link:hover { color: var(--color-primary); }
+  .project-detail__header { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-top: 3rem; }
+  .project-detail__summary { max-width: 60ch; color: var(--color-muted); font-size: 1.1rem; }
+  .project-detail__status { flex: none; color: var(--color-primary); font-family: "JetBrains Mono", monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .project-detail__topics { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.5rem; }
+  .project-detail__body { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--color-border); }
+  .project-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 3.5rem; padding-top: 1.3rem; border-top: 1px solid var(--color-border); }
+  .project-links .eyebrow { margin-right: 0.6rem; }
+  .project-links a { color: var(--color-primary); font-size: 0.85rem; font-weight: 700; text-decoration: none; }
+  @media (max-width: 700px) { .project-detail__header { display: grid; align-items: start; } }
+</style>

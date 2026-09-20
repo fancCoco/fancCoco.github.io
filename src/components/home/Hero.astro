@@ -1,0 +1,62 @@
+---
+import { siteConfig } from '../../config';
+import { sitePath } from '../../lib/urls';
+import Button from '../common/Button.astro';
+import IconLink from '../common/IconLink.astro';
+---
+<section class="hero section-space">
+  <div class="shell hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">{siteConfig.affiliation} / Electrical Engineering</p>
+      <h1 class="display-title">{siteConfig.name}</h1>
+      <p class="hero__role">{siteConfig.role}</p>
+      <p class="hero__statement">Researching <strong>safe autonomous systems</strong>, multi-robot planning, and foundation models for robotics.</p>
+      <div class="hero__actions">
+        <Button href={sitePath('/publications/')} label="View publications" />
+        <Button href={sitePath('/research/')} label="Explore research" variant="secondary" />
+      </div>
+      <div class="hero__links">
+        {siteConfig.email && <IconLink href={`mailto:${siteConfig.email}`} label="Email" icon="mail" external={false} />}
+        {siteConfig.links.scholar && <IconLink href={siteConfig.links.scholar} label="Google Scholar" icon="scholar" />}
+        {siteConfig.links.github && <IconLink href={siteConfig.links.github} label="GitHub" icon="github" />}
+        {siteConfig.links.linkedin && <IconLink href={siteConfig.links.linkedin} label="LinkedIn" icon="linkedin" />}
+        {siteConfig.links.orcid && <IconLink href={siteConfig.links.orcid} label="ORCID" icon="orcid" />}
+        {!siteConfig.email && !siteConfig.links.scholar && !siteConfig.links.github && !siteConfig.links.linkedin && !siteConfig.links.orcid && <span class="muted hero__links-note">External profiles will be added as they become public.</span>}
+      </div>
+    </div>
+    <div class="hero__visual" role="img" aria-label="Abstract FC monogram representing Fan Chen">
+      <div class="hero__orbit hero__orbit--one"></div>
+      <div class="hero__orbit hero__orbit--two"></div>
+      <div class="hero__node hero__node--one"></div>
+      <div class="hero__node hero__node--two"></div>
+      <div class="hero__node hero__node--three"></div>
+      <div class="hero__monogram">FC</div>
+      <p class="hero__caption">safe autonomy<br />through reliable reasoning</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(5.5rem, 12vw, 9.5rem); }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr); align-items: center; gap: clamp(2.5rem, 8vw, 7rem); }
+  .hero__copy { max-width: 670px; }
+  .hero__role { margin: 1.7rem 0 0; color: var(--color-primary); font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 700; letter-spacing: -0.02em; }
+  .hero__statement { max-width: 55ch; margin: 1.1rem 0 0; color: var(--color-muted); font-size: clamp(1.05rem, 1.7vw, 1.26rem); }
+  .hero__statement strong { color: var(--color-text); font-weight: 700; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+  .hero__links { display: flex; flex-wrap: wrap; align-items: center; gap: 1.1rem; margin-top: 2.2rem; }
+  .hero__links-note { font-size: 0.8rem; }
+  .hero__visual { position: relative; display: grid; place-items: center; min-height: 390px; overflow: hidden; border: 1px solid var(--color-border); border-radius: 1.5rem; background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 44%), var(--color-surface); }
+  .hero__visual::before { content: ''; position: absolute; inset: 12%; border: 1px dashed var(--color-border-strong); border-radius: 50%; transform: rotate(-18deg) skewX(-10deg); opacity: 0.75; }
+  .hero__visual::after { content: ''; position: absolute; width: 72%; height: 72%; border: 1px solid color-mix(in srgb, var(--color-teal) 45%, transparent); border-radius: 50%; transform: rotate(34deg) skewY(10deg); }
+  .hero__orbit { position: absolute; border: 1px solid var(--color-border-strong); border-radius: 50%; }
+  .hero__orbit--one { width: 68%; height: 30%; transform: rotate(22deg); }
+  .hero__orbit--two { width: 38%; height: 74%; transform: rotate(-27deg); border-color: color-mix(in srgb, var(--color-accent) 60%, transparent); }
+  .hero__node { position: absolute; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-accent) 16%, transparent); }
+  .hero__node--one { top: 24%; right: 22%; }
+  .hero__node--two { bottom: 27%; left: 19%; background: var(--color-teal); box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-teal) 16%, transparent); }
+  .hero__node--three { right: 11%; bottom: 33%; width: 0.4rem; height: 0.4rem; background: var(--color-primary); }
+  .hero__monogram { position: relative; z-index: 1; color: var(--color-primary); font-size: clamp(5rem, 13vw, 9rem); font-weight: 780; letter-spacing: -0.12em; line-height: 1; }
+  .hero__caption { position: absolute; left: 1.35rem; bottom: 1.15rem; margin: 0; color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.67rem; letter-spacing: 0.08em; line-height: 1.65; text-transform: uppercase; }
+  @media (max-width: 800px) { .hero__grid { grid-template-columns: 1fr; } .hero__visual { min-height: 300px; } }
+</style>

@@ -1,0 +1,10 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import RecentNews from '../components/home/RecentNews.astro';
+import { publicNews } from '../lib/content';
+
+const entries = await publicNews();
+---
+<ContentLayout title="News" description="Selected updates on publications, research, education, and projects.">
+  <RecentNews entries={entries} limit={entries.length} />
+</ContentLayout>

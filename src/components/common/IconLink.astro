@@ -1,0 +1,18 @@
+---
+interface Props { href: string; label: string; icon?: 'mail' | 'github' | 'scholar' | 'linkedin' | 'orcid'; external?: boolean; }
+const { href, label, icon = 'mail', external = true } = Astro.props;
+---
+<a class="icon-link" href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined} aria-label={label}>
+  {icon === 'mail' && <span aria-hidden="true">✉</span>}
+  {icon === 'github' && <span aria-hidden="true">GH</span>}
+  {icon === 'scholar' && <span aria-hidden="true">GS</span>}
+  {icon === 'linkedin' && <span aria-hidden="true">in</span>}
+  {icon === 'orcid' && <span aria-hidden="true">iD</span>}
+  <span>{label}</span>
+</a>
+
+<style>
+  .icon-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-muted); font-size: 0.82rem; text-decoration: none; }
+  .icon-link > span:first-child { display: grid; place-items: center; min-width: 1.35rem; height: 1.35rem; border: 1px solid var(--color-border-strong); border-radius: 0.35rem; color: var(--color-primary); font-family: "JetBrains Mono", monospace; font-size: 0.6rem; font-weight: 800; }
+  .icon-link:hover { color: var(--color-primary); }
+</style>

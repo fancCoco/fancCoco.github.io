@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Button from '../components/common/Button.astro';
+import { sitePath } from '../lib/urls';
+---
+<BaseLayout title="Page not found · Fan Chen" description="The requested page could not be found.">
+  <Header />
+  <main id="main-content"><section class="section-space"><div class="shell not-found"><p class="eyebrow">404 / Not found</p><h1 class="page-title">This page moved or never existed.</h1><p class="lede">Try returning to the homepage or browsing the research and publications pages.</p><Button href={sitePath('/')} label="Return home" /></div></section></main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 55vh; display: flex; flex-direction: column; align-items: start; justify-content: center; }
+  .not-found .button { margin-top: 1.3rem; }
+</style>

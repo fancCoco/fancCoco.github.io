@@ -1,0 +1,28 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+<BaseLayout title={`${title} · Fan Chen`} description={description}>
+  <Header />
+  <main id="main-content">
+    <section class="section-space">
+      <div class="shell">
+        <p class="eyebrow">Fan Chen / Academic portfolio</p>
+        <h1 class="page-title">{title}</h1>
+        <p class="lede">{description}</p>
+        <div class="prose" style="margin-top: 3.5rem;">
+          <slot />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
