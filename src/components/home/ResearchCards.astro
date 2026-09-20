@@ -1,6 +1,4 @@
 ---
-import Tag from '../common/Tag.astro';
-
 const areas = [
   {
     number: '01',
@@ -22,24 +20,27 @@ const areas = [
   },
 ];
 ---
-<div class="research-grid">
+<div class="research-list">
   {areas.map((area) => (
-    <article class="research-card surface-card">
-      <div class="research-card__top"><span class="eyebrow">{area.number}</span><span class="research-card__arrow" aria-hidden="true">↗</span></div>
-      <h3>{area.title}</h3>
-      <p>{area.summary}</p>
-      <div class="research-card__tags">{area.methods.map((method) => <Tag label={method} />)}</div>
+    <article class="research-item">
+      <span class="research-item__number">{area.number}</span>
+      <div>
+        <h3>{area.title}</h3>
+        <p>{area.summary}</p>
+        <p class="research-item__methods">{area.methods.join(' · ')}</p>
+      </div>
     </article>
   ))}
 </div>
 
 <style>
-  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .research-card { min-height: 290px; padding: 1.4rem; transition: transform 180ms ease, border-color 180ms ease; }
-  .research-card__top { display: flex; justify-content: space-between; }
-  .research-card__arrow { color: var(--color-accent); font-size: 1.2rem; }
-  .research-card h3 { max-width: 15ch; margin: 2.2rem 0 0.8rem; color: var(--color-primary); font-size: 1.35rem; letter-spacing: -0.04em; line-height: 1.1; }
-  .research-card p { margin: 0; color: var(--color-muted); font-size: 0.9rem; }
-  .research-card__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.25rem; }
-  @media (max-width: 800px) { .research-grid { grid-template-columns: 1fr; } .research-card { min-height: auto; } }
+  .research-list { border-top: 1px solid var(--color-border); }
+  .research-item { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.45rem; border-bottom: 1px solid var(--color-border); }
+  .research-item__number { color: var(--color-accent); font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.73rem; letter-spacing: 0.08em; }
+  .research-item h3 { margin: 0; color: var(--color-primary); font-size: 1.12rem; font-weight: 700; letter-spacing: -0.02em; }
+  .research-item p { max-width: 65ch; margin: 0.45rem 0 0; color: var(--color-muted); font-size: 0.94rem; }
+  .research-item .research-item__methods { margin-top: 0.7rem; color: var(--color-primary); font-size: 0.76rem; letter-spacing: 0.02em; }
+  @media (max-width: 600px) {
+    .research-item { grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0.8rem; }
+  }
 </style>

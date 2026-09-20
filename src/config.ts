@@ -6,5 +6,8 @@ export const siteConfig = {
 };
 
 export const navigation = [
-  { label: 'Home', href: '/' },
+  { label: 'Bio', href: '/#bio' },
+  { label: 'News', href: '/#news' },
+  { label: 'Research', href: '/#research' },
+  { label: 'Publications', href: '/#publications' },
 ];

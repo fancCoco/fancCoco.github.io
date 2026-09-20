@@ -4,7 +4,6 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Hero from '../components/home/Hero.astro';
 import ResearchCards from '../components/home/ResearchCards.astro';
-import SectionHeading from '../components/common/SectionHeading.astro';
 import { siteConfig } from '../config';
 
 const structuredData = {
@@ -20,76 +19,62 @@ const structuredData = {
   <main id="main-content">
     <Hero />
 
-    <section id="bio" class="section-space section-muted">
-      <div class="shell content-grid">
-        <SectionHeading eyebrow="01 / Bio" title="Building reliable intelligence for the physical world." />
-        <div class="content-copy">
-          <p>Fan Chen is a researcher in intelligent systems at Northbridge Institute, working across learning, planning, and embodied agents.</p>
-          <p>The current focus is on systems that can reason under uncertainty, recover from failure, and collaborate with people.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="news" class="section-space">
-      <div class="shell narrow-section">
-        <SectionHeading eyebrow="02 / News" title="Recent notes from the lab." />
-        <div class="template-list">
-          <div class="template-row"><span>Mar 2026</span><p>Measuring Recovery in Adaptive Agents was accepted to ICRA 2026.</p><span aria-hidden="true">↗</span></div>
-          <div class="template-row"><span>Jan 2026</span><p>Joined the Northbridge Robotics Initiative as a visiting researcher.</p><span aria-hidden="true">↗</span></div>
-          <div class="template-row"><span>Oct 2025</span><p>Released AtlasBench, a benchmark for long-horizon planning.</p><span aria-hidden="true">↗</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="research" class="section-space section-muted">
+    <section id="news" class="academic-section academic-section--border">
       <div class="shell">
-        <SectionHeading eyebrow="03 / Research" title="Three ways of studying capable agents." />
+        <h2 class="section-heading">News</h2>
+        <div class="news-list">
+          <article class="news-row">
+            <time datetime="2026-03">Mar 2026</time>
+            <p>Measuring Recovery in Adaptive Agents was accepted to ICRA 2026.</p>
+          </article>
+          <article class="news-row">
+            <time datetime="2026-01">Jan 2026</time>
+            <p>Joined the Northbridge Robotics Initiative as a visiting researcher.</p>
+          </article>
+          <article class="news-row">
+            <time datetime="2025-10">Oct 2025</time>
+            <p>Released AtlasBench, a benchmark for long-horizon planning.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="academic-section">
+      <div class="shell">
+        <h2 class="section-heading">Research</h2>
+        <p class="section-lede">My research examines how autonomous systems learn, plan, and work with people when the world does not behave exactly as expected.</p>
         <ResearchCards />
       </div>
     </section>
 
-    <section id="publications" class="section-space">
-      <div class="shell narrow-section">
-        <SectionHeading eyebrow="04 / Publications" title="Selected publications." />
-        <div class="template-list">
-          <div class="template-row"><span>2026</span><p>Measuring Recovery in Adaptive Agents · ICRA 2026</p><span aria-hidden="true">↗</span></div>
-          <div class="template-row"><span>2025</span><p>AtlasBench: Evaluating Long-Horizon Robot Planning · RSS 2025</p><span aria-hidden="true">↗</span></div>
+    <section id="publications" class="academic-section academic-section--border">
+      <div class="shell">
+        <h2 class="section-heading">Selected Publications</h2>
+        <div class="publication-list">
+          <article class="publication-item">
+            <p class="publication-year">2026</p>
+            <h3>Measuring Recovery in Adaptive Agents</h3>
+            <p class="publication-authors">Fan Chen, Mira Park, and Leo Alvarez</p>
+            <p class="publication-venue">International Conference on Robotics and Automation (ICRA), 2026</p>
+            <p class="publication-links"><a href="#publications">Paper</a><span aria-hidden="true">·</span><a href="#research">Project</a></p>
+            <p class="publication-abstract">A study of how embodied agents detect failure, revise a plan, and return to useful behavior across changing tasks.</p>
+          </article>
+          <article class="publication-item">
+            <p class="publication-year">2025</p>
+            <h3>AtlasBench: Evaluating Long-Horizon Robot Planning</h3>
+            <p class="publication-authors">Fan Chen, Priya Shah, and Daniel Kim</p>
+            <p class="publication-venue">Robotics: Science and Systems (RSS), 2025</p>
+            <p class="publication-links"><a href="#publications">Paper</a><span aria-hidden="true">·</span><a href="#research">Code</a></p>
+            <p class="publication-abstract">A benchmark for comparing planning systems on tasks that combine uncertain observations, delayed feedback, and evolving goals.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section-space section-muted">
-      <div class="shell narrow-section">
-        <SectionHeading eyebrow="05 / Projects" title="Research software and experiments." />
-        <div class="template-list">
-          <div class="template-row"><span>AtlasBench</span><p>Benchmarking planning under changing task constraints.</p><span aria-hidden="true">↗</span></div>
-          <div class="template-row"><span>Harbor</span><p>A simulation toolkit for safe multi-agent coordination.</p><span aria-hidden="true">↗</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="theses" class="section-space">
-      <div class="shell narrow-section">
-        <SectionHeading eyebrow="06 / Theses &amp; Dissertations" title="Theses &amp; dissertations." />
-        <div class="template-list">
-          <div class="template-row"><span>2024</span><p>Contextual Planning for Adaptive Agents · PhD dissertation</p><span aria-hidden="true">↗</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="patents" class="section-space section-muted">
-      <div class="shell narrow-section">
-        <SectionHeading eyebrow="07 / Patents" title="Patents and disclosures." />
-        <div class="template-list">
-          <div class="template-row"><span>2025</span><p>Adaptive Task Allocation for Heterogeneous Agents · Patent disclosure</p><span aria-hidden="true">↗</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-band">
-      <div class="shell contact-band__inner">
-        <div><p class="eyebrow">08 / Contact</p><h2>Collaborate on thoughtful systems.</h2></div>
-        <p class="muted">fan.chen@example.edu<br />CV · Scholar · GitHub</p>
+    <section id="contact" class="academic-section contact-section">
+      <div class="shell">
+        <h2 class="section-heading">Contact</h2>
+        <p class="contact-copy">For research conversations, collaborations, and seminar invitations, write to <a href="mailto:fan.chen@example.edu">fan.chen@example.edu</a>.</p>
       </div>
     </section>
   </main>
@@ -97,21 +82,26 @@ const structuredData = {
 </BaseLayout>
 
 <style>
-  .section-muted { background: color-mix(in srgb, var(--color-surface) 44%, transparent); border-block: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent); }
-  .content-grid { display: grid; grid-template-columns: minmax(220px, 0.82fr) minmax(0, 1.18fr); gap: clamp(2rem, 9vw, 8rem); align-items: start; }
-  .content-copy { max-width: 62ch; color: var(--color-muted); }
-  .content-copy p { margin: 0 0 1.1rem; }
-  .narrow-section { max-width: 900px; }
-  .template-list { border-top: 1px solid var(--color-border); }
-  .template-row { display: grid; grid-template-columns: 7rem 1fr auto; gap: 1.25rem; align-items: center; min-height: 4.2rem; border-bottom: 1px solid var(--color-border); }
-  .template-row > span:first-child { color: var(--color-muted); font-family: "JetBrains Mono", monospace; font-size: 0.7rem; letter-spacing: 0.08em; }
-  .template-row p { margin: 0; color: var(--color-primary); font-weight: 650; }
-  .template-row > span:last-child { color: var(--color-accent); }
-  .template-empty { min-height: 8rem; display: grid; place-items: center; padding: 1.5rem; border: 1px dashed var(--color-border-strong); border-radius: 1rem; color: var(--color-muted); text-align: center; }
-  .contact-band { border-top: 1px solid var(--color-border); background: var(--color-primary); color: var(--color-primary-contrast); }
-  .contact-band__inner { display: flex; justify-content: space-between; gap: 2rem; align-items: center; padding-block: 3.8rem; }
-  .contact-band .eyebrow { color: var(--color-accent); }
-  .contact-band h2 { max-width: 13ch; margin: 0.6rem 0 0; font-size: clamp(1.9rem, 4vw, 3.4rem); letter-spacing: -0.06em; line-height: 1; }
-  .contact-band .muted { max-width: 32ch; color: color-mix(in srgb, var(--color-primary-contrast) 70%, transparent); }
-  @media (max-width: 700px) { .content-grid, .contact-band__inner { grid-template-columns: 1fr; display: grid; gap: 1.5rem; } .template-row { grid-template-columns: 5.5rem 1fr auto; gap: 0.75rem; } }
+  .academic-section { padding-block: clamp(3.8rem, 7vw, 5.8rem); }
+  .academic-section--border { border-top: 1px solid var(--color-border); }
+  .section-heading { margin: 0 0 1.8rem; color: var(--color-primary); font-size: clamp(1.45rem, 2.5vw, 1.8rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.2; }
+  .section-lede { max-width: 67ch; margin: -0.35rem 0 2.3rem; color: var(--color-muted); }
+  .news-list, .publication-list { border-top: 1px solid var(--color-border); }
+  .news-row { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1rem; border-bottom: 1px solid var(--color-border); }
+  .news-row time, .publication-year { color: var(--color-muted); font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .news-row p { margin: 0; color: var(--color-text); }
+  .publication-item { max-width: 790px; padding-block: 1.8rem 2rem; border-bottom: 1px solid var(--color-border); }
+  .publication-item:last-child { border-bottom: 0; }
+  .publication-year { margin: 0 0 0.45rem; }
+  .publication-item h3 { margin: 0; color: var(--color-primary); font-size: clamp(1.12rem, 2vw, 1.35rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.3; }
+  .publication-authors, .publication-venue { margin: 0.45rem 0 0; color: var(--color-muted); font-size: 0.93rem; }
+  .publication-venue { font-style: italic; }
+  .publication-links { display: flex; gap: 0.55rem; margin: 0.65rem 0 0; font-size: 0.88rem; }
+  .publication-links a, .contact-copy a { color: var(--color-primary); font-weight: 650; }
+  .publication-abstract { max-width: 70ch; margin: 0.8rem 0 0; color: var(--color-muted); font-size: 0.92rem; }
+  .contact-section { border-top: 1px solid var(--color-border); }
+  .contact-copy { max-width: 62ch; margin: 0; color: var(--color-muted); }
+  @media (max-width: 600px) {
+    .news-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
 </style>
