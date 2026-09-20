@@ -1,6 +1,6 @@
 # Fan Chen Academic Website
 
-An English, single-page academic website template built with Astro and TypeScript. The public site intentionally contains only the name Fan Chen and generic placeholders until approved public content is added.
+An English, single-page academic website template built with Astro and TypeScript. The public page uses fictional example content for layout testing; replace it only with approved public information.
 
 ## Development
 
@@ -22,7 +22,7 @@ The production site deploys to GitHub Pages through the workflow in `.github/wor
 - Content templates: `src/content/`
 - Public assets: `public/`
 
-The example content files are marked `draft: true` and are not rendered. The current public site uses only the Home page; the content folders are retained as future templates. Replace them only with information that is ready to be public. Keep private, unpublished, or unverified details out of the repository.
+The content files are marked `draft: true` and are not rendered by the current Home page. They provide fictional examples for future CMS or content integration. Keep private, unpublished, or unverified details out of the repository.
 
 ## Design direction
 

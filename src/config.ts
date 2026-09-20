@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Fan Chen',
-  title: 'Fan Chen | Academic Website',
-  description: 'Academic website template for Fan Chen.',
+  title: 'Fan Chen | Intelligent Systems',
+  description: 'Research, teaching, and community.',
   image: '/og-default.svg',
 };
 
